@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\rules\UpdateRule;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -125,5 +126,48 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionRole(){
+      /*  $admin = Yii::$app->authManager->createRole('admin');
+        $admin->description = 'Администратор';
+        Yii::$app->authManager->add($admin);
+
+        $worker = Yii::$app->authManager->createRole('co-worker');
+        $worker->description = 'Сотрудник';
+        Yii::$app->authManager->add($worker);
+
+        $supervisor = Yii::$app->authManager->createRole('supervisor');
+        $supervisor->description = 'Руководитель';
+        Yii::$app->authManager->add($supervisor);
+
+        $permit = Yii::$app->authManager->createPermission('canAdmin');
+        $permit->description = 'Право входа в админку';
+        Yii::$app->authManager->add($permit);
+
+        $role = Yii::$app->authManager->getRole('admin');
+        $permit = Yii::$app->authManager->getPermission('canAdmin');
+        Yii::$app->authManager->addChild($role, $permit);*/
+
+        /*$auth = Yii::$app->authManager;
+        $rule = new UpdateRule();
+        $auth->add($rule);*/
+
+        /*$auth = Yii::$app->authManager;
+        $updateOwnPost = $auth->createPermission('updateTask');
+        $updateOwnPost->description = 'Редактировать задание';
+        $auth->add($updateOwnPost);*/
+
+        // "updateOwnPost" наследует право "updatePost"
+        /*$updatePost = Yii::$app->authManager->getPermission('updateTask');
+        $updateOwnPost = Yii::$app->authManager->getPermission('updateOwnTask');
+        $auth->addChild($updateOwnPost, $updatePost);
+
+        $author = Yii::$app->authManager->getRole('co-worker');
+// и тут мы позволяем автору редактировать свои посты
+        $auth->addChild($author, $updateOwnPost);*/
+
+        return 'yes';
+    }
+
 
 }

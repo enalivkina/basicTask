@@ -1,6 +1,9 @@
 # phpstorm project files
 .idea
 
+# vscode
+.vscode
+
 # netbeans project files
 nbproject
 
@@ -31,3 +34,15 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
+
+# download dir
+/download
+
+# runtime dir
+/runtime
+
+# web assets dir
+/web/assets
+
+# file env
+.env

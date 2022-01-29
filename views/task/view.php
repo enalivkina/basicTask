@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="task-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <?php if (Yii::$app->user->can('updateTask', ['exec' => $model->exec]) ) : ?>
     <p>
         <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+    <?php endif; ?>
 
     <?= DetailView::widget([
         'model' => $model,
