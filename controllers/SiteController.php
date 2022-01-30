@@ -142,9 +142,9 @@ class SiteController extends Controller
 
         $permit = Yii::$app->authManager->createPermission('canAdmin');
         $permit->description = 'Право входа в админку';
-        Yii::$app->authManager->add($permit);
+        Yii::$app->authManager->add($permit);*/
 
-        $role = Yii::$app->authManager->getRole('admin');
+        /*$role = Yii::$app->authManager->getRole('supervisor');
         $permit = Yii::$app->authManager->getPermission('canAdmin');
         Yii::$app->authManager->addChild($role, $permit);*/
 
