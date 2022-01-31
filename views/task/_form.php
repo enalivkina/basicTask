@@ -12,13 +12,25 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'task')->textInput(['maxlength' => true]) ?>
+    <?php if (Yii::$app->user->can('co-worker') ) : ?>
 
-    <?= $form->field($model, 'text')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'task')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'exec')->dropDownList(['Не выполнено', 'Выполнено']) ?>
+        <?= $form->field($model, 'text')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'mark')->dropDownList([0, 1, 2, 3, 4, 5]) ?>
+    <?php endif; ?>
+
+    <?php if (Yii::$app->user->can('supervisor') ) : ?>
+
+        <?= $form->field($model, 'task')->textInput(['maxlength' => true, 'disabled' => true]) ?>
+
+        <?= $form->field($model, 'text')->textInput(['maxlength' => true, 'disabled' => true]) ?>
+
+        <?= $form->field($model, 'exec')->dropDownList(['Не выполнено', 'Выполнено']) ?>
+
+        <?= $form->field($model, 'mark')->dropDownList([0, 1, 2, 3, 4, 5]) ?>
+
+    <?php endif; ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

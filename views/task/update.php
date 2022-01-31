@@ -12,10 +12,17 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="task-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <?php if (Yii::$app->user->can('updateTask', ['exec' => $model->exec]) ) : ?>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+        <h1><?= Html::encode($this->title) ?></h1>
+
+        <?= $this->render('_form', [
+            'model' => $model,
+        ]) ?>
+    <?php elseif(Yii::$app->user->can('admin')):?>
+        <h1><?= Html::encode('Для данного пользователя изменения запрещены!') ?></h1>
+    <?php else:?>
+        <h1><?= Html::encode('Задание '.$model->id.' отмечено руководителем как выполненное! Изменение запрещено!') ?></h1>
+    <?php endif; ?>
 
 </div>
