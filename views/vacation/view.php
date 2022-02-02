@@ -4,37 +4,36 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Task */
+/* @var $model app\models\Vacation */
 
-$this->title = $model->task;
-$this->params['breadcrumbs'][] = ['label' => 'Задания', 'url' => ['index']];
+$this->title = $model->fio;
+$this->params['breadcrumbs'][] = ['label' => 'Отпуска', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="task-view">
+<div class="vacation-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php if (Yii::$app->user->can('updateTask', ['exec' => $model->exec]) ) : ?>
+
     <p>
         <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Вы уверены что хотите удалить это задание?',
+                'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
-    <?php endif; ?>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-          //  'id',
-            'task',
-            'text',
-            'exec',
-            'mark',
+            //'id',
+            'fio',
+            'date_begin',
+            'date_end',
+            'approve',
         ],
     ]) ?>
 
