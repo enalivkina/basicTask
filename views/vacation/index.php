@@ -16,9 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Создать отпуск', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php if (Yii::$app->user->can('co-worker') ) : ?>
+        <p>
+            <?= Html::a('Создать отпуск', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    <?php endif; ?>
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,11 +31,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-          //  'id',
             'fio',
             'date_begin',
             'date_end',
-            'approve',
+            [
+                'attribute' => 'approve',
+                'format' => 'raw',
+                'value' => function($model){
+                    return $model->approve ? '<span class="text-success" >Утвержден</span>' : '<span class="text-danger" >Не утвержден</span>';
+                }
+            ],
+            'date_create',
+            'date_update',
             [
                 'class' => ActionColumn::className(),
                 /*'urlCreator' => function ($action, Vacation $model, $key, $index, $column) {

@@ -31,11 +31,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-           // 'id',
             'task',
             'text',
-            'exec',
+            [
+                    'attribute' => 'exec',
+                    'format' => 'raw',
+                    'value' => function($model){
+                        return $model->exec ? '<span class="text-success" >Выполнено</span>' : '<span class="text-danger" >Не выполнено</span>';
+                    }
+            ],
             'mark',
+            'date_create',
+            'date_update',
             [
                 'class' => ActionColumn::className(),
                 /*'urlCreator' => function ($action, Task $model, $key, $index, $column) {

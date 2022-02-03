@@ -12,10 +12,17 @@ $this->params['breadcrumbs'][] = 'Изменить';
 ?>
 <div class="vacation-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <?php if (Yii::$app->user->can('updateTask', ['exec' => $model->approve]) ) : ?>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+        <h1><?= Html::encode($this->title) ?></h1>
+
+        <?= $this->render('_form', [
+            'model' => $model,
+        ]) ?>
+    <?php elseif(Yii::$app->user->can('admin')):?>
+        <h1><?= Html::encode('Для данного пользователя изменения запрещены!') ?></h1>
+    <?php else:?>
+        <h1><?= Html::encode('Отпуск '.$model->fio.' утвержден руководителем!') ?></h1>
+    <?php endif; ?>
 
 </div>

@@ -15,25 +15,35 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+    <?php if (Yii::$app->user->can('updateTask', ['exec' => $model->approve]) ) : ?>
+
+        <p>
+            <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+                    'method' => 'post',
+                ],
+            ]) ?>
+        </p>
+    <?php endif; ?>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            //'id',
             'fio',
             'date_begin',
             'date_end',
-            'approve',
+            [
+                'attribute' => 'approve',
+                'format' => 'raw',
+                'value' => function($model){
+                    return $model->approve ? '<span class="text-success" >Утвержден</span>' : '<span class="text-danger" >Не утвержден</span>';
+                }
+            ],
+            'date_create',
+            'date_update',
         ],
     ]) ?>
 
