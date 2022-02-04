@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -38,16 +37,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'format' => 'raw',
                     'value' => function($model){
                         return $model->exec ? '<span class="text-success" >Выполнено</span>' : '<span class="text-danger" >Не выполнено</span>';
-                    }
+                    } //как здесь) умеешь же
             ],
             'mark',
             'date_create',
             'date_update',
             [
                 'class' => ActionColumn::className(),
-                /*'urlCreator' => function ($action, Task $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }*/
+                'visible' => function(){return true;}
             ],
         ],
     ]); ?>

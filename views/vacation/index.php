@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
@@ -45,9 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_update',
             [
                 'class' => ActionColumn::className(),
-                /*'urlCreator' => function ($action, Vacation $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }*/
             ],
         ],
     ]); ?>

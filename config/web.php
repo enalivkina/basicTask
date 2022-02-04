@@ -13,6 +13,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'language' => 'ru-RU',
+    'sourceLanguage' => 'ru-RU',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
