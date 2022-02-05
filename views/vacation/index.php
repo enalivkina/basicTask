@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'formatter' => ['class' => 'yii\i18n\Formatter','nullDisplay' => ''],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -35,13 +36,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'date_end',
             [
                 'attribute' => 'approve',
+                'filter' => ['Не утверждено', 'Утверждено'],
                 'format' => 'raw',
                 'value' => function($model){
                     return $model->approve ? '<span class="text-success" >Утвержден</span>' : '<span class="text-danger" >Не утвержден</span>';
                 }
             ],
-            'date_create',
-            'date_update',
+            [
+                'attribute' => 'date_create',
+                'format' => ['DateTime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'date_update',
+                'format' => ['DateTime', 'php:d.m.Y H:i:s']
+            ],
             [
                 'class' => ActionColumn::className(),
             ],

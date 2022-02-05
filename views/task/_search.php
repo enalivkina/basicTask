@@ -24,9 +24,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'text') ?>
 
-    <?= $form->field($model, 'exec') ?>
+    <?= $form->field($model, 'exec')->dropDownList(['Не выполнено', 'Выполнено']) ?>
 
-    <?= $form->field($model, 'mark') ?>
+    <?= $form->field($model, 'mark')->dropDownList([0, 1, 2, 3, 4, 5]) ?>
+
+    <?= $form->field($model, 'date_create') ?>
+
+    <?= $form->field($model, 'date_update') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Найти', ['class' => 'btn btn-primary']) ?>

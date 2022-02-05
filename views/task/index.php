@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'formatter' => ['class' => 'yii\i18n\Formatter','nullDisplay' => ''],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -35,16 +36,25 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                     'attribute' => 'exec',
                     'format' => 'raw',
+                    'filter' => ['Не выполнено', 'Выполнено'],
                     'value' => function($model){
                         return $model->exec ? '<span class="text-success" >Выполнено</span>' : '<span class="text-danger" >Не выполнено</span>';
-                    } //как здесь) умеешь же
+                    }
             ],
-            'mark',
-            'date_create',
-            'date_update',
+            [
+                    'attribute' => 'mark',
+                    'filter' => [0, 1, 2, 3, 4, 5],
+            ],
+            [
+                    'attribute' => 'date_create',
+                    'format' => ['DateTime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'date_update',
+                'format' => ['DateTime', 'php:d.m.Y H:i:s']
+            ],
             [
                 'class' => ActionColumn::className(),
-                'visible' => function(){return true;}
             ],
         ],
     ]); ?>

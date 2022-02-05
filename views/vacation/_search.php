@@ -22,11 +22,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'fio') ?>
 
-    <?= $form->field($model, 'date_begin') ?>
+    <?= $form->field($model, 'date_begin')->textInput(['type' => 'date'])  ?>
 
-    <?= $form->field($model, 'date_end') ?>
+    <?= $form->field($model, 'date_end')->textInput(['type' => 'date'])  ?>
 
-    <?= $form->field($model, 'approve') ?>
+    <?= $form->field($model, 'approve')->dropDownList(['Не утверждено', 'Утверждено']) ?>
+
+    <?= $form->field($model, 'date_create') ?>
+
+    <?= $form->field($model, 'date_update') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

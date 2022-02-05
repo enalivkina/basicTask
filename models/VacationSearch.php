@@ -18,7 +18,7 @@ class VacationSearch extends Vacation
     {
         return [
             [['id', 'approve'], 'integer'],
-            [['fio', 'date_begin', 'date_end'], 'safe'],
+            [['fio', 'date_begin', 'date_end', 'date_create', 'date_update'], 'safe'],
         ];
     }
 
@@ -62,9 +62,13 @@ class VacationSearch extends Vacation
             'date_begin' => $this->date_begin,
             'date_end' => $this->date_end,
             'approve' => $this->approve,
+            'date_create' => $this->date_create,
+            'date_update' => $this->date_update,
         ]);
 
-        $query->andFilterWhere(['like', 'fio', $this->fio]);
+        $query->andFilterWhere(['like', 'fio', $this->fio])
+            ->andFilterWhere(['>=', 'date_create', $this->date_create])
+            ->andFilterWhere(['>=', 'date_update', $this->date_create]);
 
         return $dataProvider;
     }

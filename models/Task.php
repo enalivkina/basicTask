@@ -12,6 +12,8 @@ use Yii;
  * @property string|null $text
  * @property int|null $exec
  * @property int|null $mark
+ * @property string|null $date_create
+ * @property string|null $date_update
  */
 class Task extends \yii\db\ActiveRecord
 {

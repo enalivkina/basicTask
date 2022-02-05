@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([
         'model' => $model,
+        'formatter' => ['class' => 'yii\i18n\Formatter','nullDisplay' => ''],
         'attributes' => [
             'task',
             'text',
@@ -40,8 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             'mark',
-            'date_create',
-            'date_update',
+            [
+                'attribute' => 'date_create',
+                'format' => ['DateTime', 'php:d.m.Y H:i:s']
+            ],
+            [
+                'attribute' => 'date_update',
+                'format' => ['DateTime', 'php:d.m.Y H:i:s']
+            ],
         ],
     ]) ?>
 

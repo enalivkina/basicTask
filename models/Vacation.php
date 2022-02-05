@@ -12,6 +12,8 @@ use Yii;
  * @property string $date_begin
  * @property string|null $date_end
  * @property int|null $approve
+ * @property string|null $date_create
+ * @property string|null $date_update
  */
 class Vacation extends \yii\db\ActiveRecord
 {

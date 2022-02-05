@@ -18,7 +18,7 @@ class TaskSearch extends Task
     {
         return [
             [['id', 'exec', 'mark'], 'integer'],
-            [['task', 'text'], 'safe'],
+            [['task', 'text', 'date_create', 'date_update'], 'safe'],
         ];
     }
 
@@ -61,10 +61,14 @@ class TaskSearch extends Task
             'id' => $this->id,
             'exec' => $this->exec,
             'mark' => $this->mark,
+            'date_create' => $this->date_create,
+            'date_update' => $this->date_update,
         ]);
 
         $query->andFilterWhere(['like', 'task', $this->task])
-            ->andFilterWhere(['like', 'text', $this->text]);
+            ->andFilterWhere(['like', 'text', $this->text])
+            ->andFilterWhere(['>=', 'date_create', $this->date_create])
+            ->andFilterWhere(['>=', 'date_update', $this->date_create]);
 
         return $dataProvider;
     }
