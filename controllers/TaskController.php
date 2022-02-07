@@ -24,7 +24,7 @@ class TaskController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'update', 'view', 'create', '_search', '_form'],
+                        'actions' => ['index', 'update', 'view', 'create', '_search', '_form', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

@@ -52,6 +52,15 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => ActionColumn::className(),
+                'template' => '{view}{update}{delete}',
+                'visibleButtons' => [
+                    'update' => function($model){
+                        return Yii::$app->user->can('updateTask', ['exec' => $model->approve]);
+                    },
+                    'delete' => function($model){
+                        return Yii::$app->user->can('updateTask', ['exec' => $model->approve]);
+                    },
+                ],
             ],
         ],
     ]); ?>
